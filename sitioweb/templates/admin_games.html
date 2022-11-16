@@ -1,0 +1,95 @@
+{% include 'admin_cabecera.html' %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    Datos de juego
+                </div>
+                <div class="card-body">
+                    <form action="/admin/games/guardar" method="post" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                          <label for="txtNombre" class="form-label">Nombre:</label>
+                          <input type="text" class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Escriba el nombre del juego">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtImagen" class="form-label">Imagen:</label>
+                            <input type="file" class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione la imagen">
+                          </div>
+
+                        <div class="mb-3">
+                            <label for="txtPlataforma" class="form-label">Plataforma:</label>
+                            <input type="text" class="form-control" name="txtPlataforma" id="txtPlataforma" aria-describedby="helpId" placeholder="Escriba la plataforma del juego">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtPrecio" class="form-label">Precio:</label>
+                            <input type="text" class="form-control" name="txtPrecio" id="txtPrecio" aria-describedby="helpId" placeholder="Escriba el precio del juego">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtURL" class="form-label">URL Comprar:</label>
+                            <input type="text" class="form-control" name="txtURL" id="txtURL" aria-describedby="helpId" placeholder="Escriba la URL para comprar">
+                        </div>
+
+                        <button type="sumbit" class="btn btn-primary">Agregar</button>
+
+                    </form>
+                    
+
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                        <th>Plataforma</th>
+                        <th>Precio</th>
+                        <th>URL</th>
+                        <th>ID</th>
+                        <th>Acciones</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for juego in juegos %}
+                    <tr>
+                        <td>{{ juego [0] }}</td>
+                        <td>{{ juego [1] }}</td>
+                        <td>{{ juego [2] }}</td>
+                        <th>{{ juego [3] }}</th>
+                        <th>{{ juego [4] }}</th>
+                        <td>{{ juego [5] }}</td>
+                        <td>
+                            <form action="/admin/games/borrar" method="post">
+                               <input value="{{ juego [5] }}" type="text" name="txtID" id="txtID"> 
+                               <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td scope="row"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+{% include 'admin_pie.html' %}
+    
